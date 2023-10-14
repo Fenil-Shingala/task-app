@@ -1,0 +1,90 @@
+<div class="lable">
+  <div class="header">
+    <h6 class="mb-3">{{ editLableData ? "Update" : "Add" }} Lable</h6>
+  </div>
+  <form nz-form [formGroup]="lableForm" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="lableTitle">
+        <input nz-input formControlName="lableName" placeholder="Lable title" />
+        <ng-template #lableTitle let-control>
+          <ng-container *ngIf="lableForm.controls['lableName'].invalid"
+            >Please enter lable name</ng-container
+          >
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-3">
+      <nz-form-label nzRequired>Select color</nz-form-label>
+      <div class="radio-container">
+        <div
+          class="radio-option"
+          *ngFor="let color of lableColors; let i = index"
+        >
+          <input
+            type="radio"
+            [id]="'radio' + (i + 1)"
+            name="lableColor"
+            class="custom-radio"
+            [value]="color"
+            formControlName="lableColor"
+            (change)="lableForm.get('lableColor')?.setValue(color)"
+          />
+          <label [for]="'radio' + (i + 1)"></label>
+        </div>
+      </div>
+    </nz-form-item>
+    <nz-form-item class="mb-3">
+      <nz-form-control class="text-end">
+        <button class="me-2" nz-button type="button" (click)="resetForm()">
+          Cancel
+        </button>
+        <button
+          nz-button
+          type="submit"
+          nzType="primary"
+          [disabled]="lableForm.invalid"
+        >
+          {{ editLableData ? "Update" : "Add" }}
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <hr />
+  <div class="lable-table">
+    <h5 class="m-0">Lables</h5>
+    <nz-table [nzShowPagination]="false" #basicTable [nzData]="allLables">
+      <tbody>
+        <tr *ngFor="let label of basicTable.data">
+          <td>
+            <p class="m-0 {{ label.lableColor }}-lable">
+              {{ label.lableName | titlecase }}
+            </p>
+          </td>
+          <td class="d-flex align-items-center">
+            <span
+              (click)="editLable(label)"
+              class="me-2"
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+            ></span>
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure delete this lable?"
+              (nzOnConfirm)="deleteLable(label.id)"
+              [nzCancelText]="'Cancel'"
+              [nzOkText]="'Delete'"
+            >
+              <span
+                class="pe-1"
+                nz-icon
+                nzType="delete"
+                nzTheme="outline"
+              ></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

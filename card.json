@@ -1,0 +1,78 @@
+{
+  "lists": [
+    {
+      "listTitle": "ADCWSDC",
+      "cards": [
+        {
+          "cardTitle": "SDVD",
+          "assignee": [
+            {
+              "firstName": "Meet",
+              "lastName": "Vanpariya",
+              "email": "meet@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 2
+            },
+            {
+              "firstName": "Shubham",
+              "lastName": "Satasiya",
+              "email": "shubham@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 6
+            },
+            {
+              "firstName": "Nishant",
+              "lastName": "Vaghasiya",
+              "email": "nishant@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 8
+            },
+            {
+              "firstName": "Krushil",
+              "lastName": "Ghadiya",
+              "email": "krushil@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 4
+            },
+            {
+              "firstName": "Jayan",
+              "lastName": "Ribadiya",
+              "email": "jayan@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 3
+            }
+          ],
+          "cardLables": [
+            {
+              "lableName": "new",
+              "lableColor": "green",
+              "id": 1
+            }
+          ],
+          "id": "316B25DB",
+          "creator": {
+            "firstName": "Fenil",
+            "lastName": "S",
+            "email": "fenil@gmail.com",
+            "password": "Fenil@123",
+            "confirmPassword": "Fenil@123",
+            "id": 1
+          }
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "lables": [
+    {
+      "lableName": "new",
+      "lableColor": "green",
+      "id": 1
+    }
+  ]
+}

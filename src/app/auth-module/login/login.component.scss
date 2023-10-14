@@ -1,0 +1,85 @@
+.form-part {
+  form {
+    .email,
+    .password {
+      -webkit-text-stroke-width: thin;
+      &.txt-13 {
+        font-size: 13px;
+      }
+    }
+    .fa-eye-position {
+      margin-left: -30px;
+      cursor: pointer;
+      opacity: 0.8;
+      background: transparent;
+      font-size: 18px;
+      position: absolute;
+      top: 37%;
+    }
+    .remember-txt {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      font-size: 14px;
+      &input {
+        width: 11px;
+      }
+      .remeber-checkbox {
+        cursor: pointer;
+        padding-left: 6px;
+      }
+      .forgot-password {
+        cursor: pointer;
+        text-decoration: none;
+        color: gray;
+      }
+    }
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    .login-btn {
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: var(--color-blue);
+      color: white;
+      font-size: 14px;
+    }
+    input {
+      outline-color: var(--color-blue);
+    }
+    .input-field-style {
+      border-radius: 8px;
+      border: 0.5px solid rgb(128, 128, 128, 0.3);
+    }
+  }
+  .or {
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .w-45 {
+    width: 45%;
+  }
+  .footer-part {
+    .footer-btn {
+      background: transparent;
+      border: 0.5px solid rgb(128, 128, 128, 0.3);
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .txt-20 {
+      font-size: 20px;
+    }
+    .txt-18 {
+      font-size: 18px;
+    }
+    hr {
+      opacity: 0.2;
+    }
+    .footer-txt {
+      color: var(--color-blue);
+      text-decoration: none;
+    }
+  }
+}

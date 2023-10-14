@@ -1,0 +1,208 @@
+<div class="position">
+  <div class="main-div p-3">
+    <div class="m-2">
+      <p class="m-0 pb-2 mb-2 d-flex header-txt align-items-center">
+        <span
+          class="pe-1 color-orange"
+          nz-icon
+          nzType="user-add"
+          nzTheme="outline"
+        ></span>
+        Register
+      </p>
+      <p class="m-0 pb-2 opacity-50">
+        Create your account - enjoy our services with most updated features.
+      </p>
+    </div>
+    <div class="m-2">
+      <form class="w-100" [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div class="d-flex justify-content-between">
+          <div class="position-relative">
+            <p class="m-0 pb-2 pt-1 txt-13 email">
+              First Name <span class="text-danger">*</span>
+            </p>
+            <input
+              type="text"
+              class="w-95 p-2 input-field-style"
+              formControlName="firstName"
+              [ngStyle]="{
+                'outline-color':
+                  registerForm.controls['firstName'].invalid &&
+                  registerForm.controls['firstName'].touched
+                    ? 'red'
+                    : '#284ac1'
+              }"
+            />
+            <p
+              class="m-0 text-danger position-absolute txt-15"
+              *ngIf="
+                registerForm.controls['firstName'].invalid &&
+                registerForm.controls['firstName'].touched
+              "
+            >
+              Please enter first name
+            </p>
+          </div>
+          <div class="position-relative">
+            <p class="m-0 pb-2 pt-1 txt-13 email">
+              Last Name <span class="text-danger">*</span>
+            </p>
+            <input
+              type="text"
+              class="w-95 p-2 input-field-style"
+              [ngStyle]="{
+                'outline-color':
+                  registerForm.controls['lastName'].invalid &&
+                  registerForm.controls['lastName'].touched
+                    ? 'red'
+                    : '#284ac1'
+              }"
+              formControlName="lastName"
+            />
+            <p
+              class="m-0 text-danger position-absolute txt-15"
+              *ngIf="
+                registerForm.controls['lastName'].invalid &&
+                registerForm.controls['lastName'].touched
+              "
+            >
+              Please enter last name
+            </p>
+          </div>
+        </div>
+        <div class="position-relative">
+          <p class="m-0 pb-2 pt-1 txt-13 email mt-3">
+            Email <span class="text-danger">*</span>
+          </p>
+          <input
+            type="text"
+            class="w-100 p-2 input-field-style"
+            formControlName="email"
+            [ngStyle]="{
+              'outline-color':
+                registerForm.controls['email'].invalid &&
+                registerForm.controls['email'].touched
+                  ? 'red'
+                  : '#284ac1'
+            }"
+          />
+          <p
+            class="m-0 text-danger position-absolute"
+            *ngIf="
+              registerForm.controls['email'].invalid &&
+              registerForm.controls['email'].touched &&
+              !registerForm.controls['email'].hasError('duplicateEmailError')
+            "
+          >
+            Please enter valid email id
+          </p>
+          <p
+            class="m-0 text-danger position-absolute"
+            *ngIf="
+              registerForm.controls['email'].hasError('duplicateEmailError')
+            "
+          >
+            Email already register
+          </p>
+        </div>
+        <div class="position-relative">
+          <p class="txt-13 m-0 pt-1 password mt-3">
+            Password <span class="text-danger">*</span>
+          </p>
+          <input
+            type="{{ passwordType }}"
+            class="w-100 p-2 input-field-style position-relative"
+            formControlName="password"
+            [ngStyle]="{
+              'outline-color':
+                registerForm.controls['password'].invalid &&
+                registerForm.controls['password'].touched
+                  ? 'red'
+                  : '#284ac1'
+            }"
+          />
+          <a
+            (click)="togglePasswordVisibility('password')"
+            class="border-0 fa-eye-position text-black"
+          >
+            <span
+              nz-icon
+              nzType="eye-invisible"
+              nzTheme="outline"
+              *ngIf="!passwordVisible"
+            ></span>
+            <span
+              nz-icon
+              nzType="eye"
+              nzTheme="outline"
+              *ngIf="passwordVisible"
+            ></span>
+          </a>
+          <div class="py-1 position-relative">
+            <p
+              class="m-0 text-danger position-absolute txt-15"
+              *ngIf="
+                registerForm.controls['password'].invalid &&
+                registerForm.controls['password'].touched
+              "
+            >
+              Min character 8 (uppe, lower, special, num)
+            </p>
+          </div>
+        </div>
+        <div class="position-relative mb-2">
+          <p class="txt-13 m-0 pt-1 password mt-2">
+            Confirm Password <span class="text-danger">*</span>
+          </p>
+          <input
+            type="{{ confirmPasswordType }}"
+            class="w-100 p-2 input-field-style position-relative"
+            formControlName="confirmPassword"
+            [ngStyle]="{
+              'outline-color':
+                registerForm.controls['confirmPassword'].invalid &&
+                registerForm.controls['confirmPassword'].touched
+                  ? 'red'
+                  : '#284ac1'
+            }"
+          />
+          <a
+            (click)="togglePasswordVisibility('confirmPassword')"
+            class="border-0 fa-eye-position text-black"
+          >
+            <span
+              nz-icon
+              nzType="eye-invisible"
+              nzTheme="outline"
+              *ngIf="!confirmPasswordVisible"
+            ></span>
+            <span
+              nz-icon
+              nzType="eye"
+              nzTheme="outline"
+              *ngIf="confirmPasswordVisible"
+            ></span>
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="p-2 my-2 w-100 border-0 submit-btn"
+          [ngClass]="{ 'opacity-50': registerForm.invalid }"
+        >
+          Let's Roll
+        </button>
+      </form>
+    </div>
+
+    <div class="text-center">
+      <p class="m-0">
+        Already have account?
+        <a class="cursor-pointer footer-txt register-txt" routerLink=""
+          >Login</a
+        >
+      </p>
+    </div>
+  </div>
+</div>
