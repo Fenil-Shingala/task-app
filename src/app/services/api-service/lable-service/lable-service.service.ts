@@ -2,38 +2,38 @@ import { Injectable } from '@angular/core';
 import { SharedServiceService } from '../../shared-service/shared-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Lable } from 'src/app/interface/Lable';
+import { Label } from 'src/app/interface/Label';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LableServiceService {
+export class LabelServiceService {
   constructor(
     private sharedService: SharedServiceService,
     private http: HttpClient
   ) {}
 
-  addLables(lableData: Lable): Observable<Lable> {
-    return this.http.post<Lable>(
-      `${this.sharedService.cardUrl}/lables`,
-      lableData
+  addLabels(labelData: Label): Observable<Label> {
+    return this.http.post<Label>(
+      `${this.sharedService.cardUrl}/labels`,
+      labelData
     );
   }
 
-  getAllLables(): Observable<Lable[]> {
-    return this.http.get<Lable[]>(`${this.sharedService.cardUrl}/lables`);
+  getAllLabels(): Observable<Label[]> {
+    return this.http.get<Label[]>(`${this.sharedService.cardUrl}/labels`);
   }
 
-  updateLable(updatredLable: Lable, lableId: number): Observable<Lable> {
-    return this.http.put<Lable>(
-      `${this.sharedService.cardUrl}/lables/${lableId}`,
-      updatredLable
+  updateLabel(updatredlabel: Label, labelId: number): Observable<Label> {
+    return this.http.put<Label>(
+      `${this.sharedService.cardUrl}/labels/${labelId}`,
+      updatredlabel
     );
   }
 
-  deleteLable(lableId: number): Observable<Lable> {
-    return this.http.delete<Lable>(
-      `${this.sharedService.cardUrl}/lables/${lableId}`
+  deleteLabel(labelId: number): Observable<Label> {
+    return this.http.delete<Label>(
+      `${this.sharedService.cardUrl}/labels/${labelId}`
     );
   }
 }

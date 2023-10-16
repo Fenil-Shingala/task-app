@@ -1,4 +1,4 @@
-.lable {
+.label {
   form {
     .radio-container {
       display: flex;
@@ -31,7 +31,7 @@
           }
         }
         #radio1 + label {
-          background-color: rgba(255, 0, 0, 0.6);
+          background-color: rgba(255, 0, 0, 0.664);
           border-radius: 5px;
         }
         #radio2 + label {
@@ -40,11 +40,11 @@
         }
         #radio3 + label {
           border-radius: 5px;
-          background-color: rgb(209, 209, 54);
+          background-color: gold;
         }
         #radio4 + label {
           border-radius: 5px;
-          background-color: gray;
+          background-color: magenta;
         }
         #radio5 + label {
           border-radius: 5px;
@@ -54,11 +54,23 @@
           border-radius: 5px;
           background-color: orange;
         }
+        #radio7 + label {
+          border-radius: 5px;
+          background-color: lime;
+        }
+        #radio8 + label {
+          border-radius: 5px;
+          background-color: purple;
+        }
+        #radio9 + label {
+          border-radius: 5px;
+          background-color: cyan;
+        }
       }
     }
   }
 
-  .lable-table {
+  .label-table {
     nz-table {
       max-height: 404px;
       overflow-y: auto;

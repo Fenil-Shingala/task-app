@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Card } from 'src/app/interface/Card';
-import { Lable } from 'src/app/interface/Lable';
+import { Label } from 'src/app/interface/Label';
 import { List } from 'src/app/interface/List';
 import { User } from 'src/app/interface/User';
 import { CardServiceService } from 'src/app/services/api-service/card-service/card-service.service';
-import { LableServiceService } from 'src/app/services/api-service/lable-service/lable-service.service';
+import { LabelServiceService } from 'src/app/services/api-service/lable-service/lable-service.service';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
 import { noSpace } from 'src/app/validators/noSpace.validators';
@@ -19,8 +19,8 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
 })
 export class CardModalComponent {
   listOfAssignee: string[] = [];
-  listOfLables: string[] = [];
-  allLables: Lable[] = [];
+  listOfLabels: string[] = [];
+  allLabels: Label[] = [];
   allUsers: User[] = [];
   loginUser!: User;
   cardForm!: FormGroup;
@@ -30,7 +30,7 @@ export class CardModalComponent {
     private cardFormBuilder: FormBuilder,
     private sharedService: SharedServiceService,
     private userService: UserServiceService,
-    private lableService: LableServiceService,
+    private labelService: LabelServiceService,
     private cardService: CardServiceService,
     private modalService: NzModalService,
     @Inject(NZ_MODAL_DATA)
@@ -46,10 +46,10 @@ export class CardModalComponent {
     this.cardForm = this.cardFormBuilder.group({
       cardTitle: ['', [Validators.required, noSpace.noSpaceValidator]],
       assignee: [[]],
-      cardLables: [[]],
+      cardLabels: [[]],
     });
     this.getAllUsers();
-    this.getAllLables();
+    this.getAllLabels();
     this.loginUser = this.sharedService.getLoginUser();
     if (this.data.editData) {
       this.cardForm.controls['cardTitle'].patchValue(
@@ -59,10 +59,10 @@ export class CardModalComponent {
         return value.email;
       });
       this.listOfAssignee = assigneeList;
-      const cardLablesList = this.data.cardData.cardLables.map((value) => {
-        return value.lableName;
+      const cardlabelsList = this.data.cardData.cardLabels.map((value) => {
+        return value.labelName;
       });
-      this.listOfLables = cardLablesList;
+      this.listOfLabels = cardlabelsList;
     }
   }
 
@@ -82,22 +82,22 @@ export class CardModalComponent {
     });
   }
 
-  getAllLables(): void {
-    this.lableService.getAllLables().subscribe({
+  getAllLabels(): void {
+    this.labelService.getAllLabels().subscribe({
       next: (value) => {
-        this.allLables = value;
+        this.allLabels = value;
       },
       error: () => {},
     });
   }
 
   submit(): void {
-    const newCardLables = this.cardForm.controls['cardLables'].value.map(
+    const newCardlabels = this.cardForm.controls['cardLabels'].value.map(
       (value: string) => {
-        const filterLable = this.allLables.find(
-          (lable) => lable.lableName === value
+        const filterLabel = this.allLabels.find(
+          (label) => label.labelName === value
         );
-        return filterLable;
+        return filterLabel;
       }
     );
     const newAssignee = this.cardForm.controls['assignee'].value.map(
@@ -118,9 +118,9 @@ export class CardModalComponent {
       creator: this.data.editData
         ? this.data.cardData.creator
         : this.sharedService.getLoginUser(),
-      cardLables: this.data.editData
-        ? newCardLables
-        : this.cardForm.controls['cardLables'].value,
+      cardLabels: this.data.editData
+        ? newCardlabels
+        : this.cardForm.controls['cardLabels'].value,
       assignee: this.data.editData
         ? newAssignee
         : this.cardForm.controls['assignee'].value,

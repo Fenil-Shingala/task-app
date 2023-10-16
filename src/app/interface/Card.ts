@@ -1,10 +1,10 @@
-import { Lable } from './Lable';
+import { Label } from './Label';
 import { User } from './User';
 
 export interface Card {
   cardTitle: string;
   assignee: User[];
-  cardLables: Lable[];
+  cardLabels: Label[];
   creator: User;
   id: number;
 }

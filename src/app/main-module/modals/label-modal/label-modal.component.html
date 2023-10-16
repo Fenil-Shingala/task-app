@@ -1,14 +1,14 @@
-<div class="lable">
+<div class="label">
   <div class="header">
-    <h6 class="mb-3">{{ editLableData ? "Update" : "Add" }} Lable</h6>
+    <h6 class="mb-3">{{ editlabelData ? "Update" : "Add" }} label</h6>
   </div>
-  <form nz-form [formGroup]="lableForm" (ngSubmit)="submit()">
+  <form nz-form [formGroup]="labelForm" (ngSubmit)="submit()">
     <nz-form-item>
-      <nz-form-control [nzErrorTip]="lableTitle">
-        <input nz-input formControlName="lableName" placeholder="Lable title" />
-        <ng-template #lableTitle let-control>
-          <ng-container *ngIf="lableForm.controls['lableName'].invalid"
-            >Please enter lable name</ng-container
+      <nz-form-control [nzErrorTip]="labelTitle">
+        <input nz-input formControlName="labelName" placeholder="label title" />
+        <ng-template #labelTitle let-control>
+          <ng-container *ngIf="labelForm.controls['labelName'].invalid"
+            >Please enter label name</ng-container
           >
         </ng-template>
       </nz-form-control>
@@ -18,16 +18,16 @@
       <div class="radio-container">
         <div
           class="radio-option"
-          *ngFor="let color of lableColors; let i = index"
+          *ngFor="let color of labelColors; let i = index"
         >
           <input
             type="radio"
             [id]="'radio' + (i + 1)"
-            name="lableColor"
+            name="labelColor"
             class="custom-radio"
             [value]="color"
-            formControlName="lableColor"
-            (change)="lableForm.get('lableColor')?.setValue(color)"
+            formControlName="labelColor"
+            (change)="labelForm.get('labelColor')?.setValue(color)"
           />
           <label [for]="'radio' + (i + 1)"></label>
         </div>
@@ -42,27 +42,25 @@
           nz-button
           type="submit"
           nzType="primary"
-          [disabled]="lableForm.invalid"
+          [disabled]="labelForm.invalid"
         >
-          {{ editLableData ? "Update" : "Add" }}
+          {{ editlabelData ? "Update" : "Add" }}
         </button>
       </nz-form-control>
     </nz-form-item>
   </form>
   <hr />
-  <div class="lable-table">
-    <h5 class="m-0">Lables</h5>
-    <nz-table [nzShowPagination]="false" #basicTable [nzData]="allLables">
+  <div class="label-table">
+    <h5 class="m-0">labels</h5>
+    <nz-table [nzShowPagination]="false" #basicTable [nzData]="alllabels">
       <tbody>
         <tr *ngFor="let label of basicTable.data">
           <td>
-            <p class="m-0 {{ label.lableColor }}-lable">
-              {{ label.lableName | titlecase }}
-            </p>
+            <nz-tag [nzColor]="label.labelColor">{{ label.labelName }}</nz-tag>
           </td>
           <td class="d-flex align-items-center">
             <span
-              (click)="editLable(label)"
+              (click)="editlabel(label)"
               class="me-2"
               nz-icon
               nzType="edit"
@@ -70,8 +68,8 @@
             ></span>
             <a
               nz-popconfirm
-              nzPopconfirmTitle="Are you sure delete this lable?"
-              (nzOnConfirm)="deleteLable(label.id)"
+              nzPopconfirmTitle="Are you sure delete this label?"
+              (nzOnConfirm)="deletelabel(label.id)"
               [nzCancelText]="'Cancel'"
               [nzOkText]="'Delete'"
             >

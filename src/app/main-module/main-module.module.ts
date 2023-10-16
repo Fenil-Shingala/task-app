@@ -2,7 +2,7 @@ import { MainModuleComponent } from './main-module.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListModalComponent } from './modals/list-modal/list-modal.component';
 import { CardModalComponent } from './modals/card-modal/card-modal.component';
-import { LableModalComponent } from './modals/lable-modal/lable-modal.component';
+import { LabelModalComponent } from './modals/label-modal/label-modal.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MainModuleComponent,
     DashboardComponent,
     ListModalComponent,
-    LableModalComponent,
+    LabelModalComponent,
     CardModalComponent,
   ],
   imports: [
@@ -47,6 +48,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NzSelectModule,
     NzPopconfirmModule,
     DragDropModule,
+    NzTagModule,
   ],
 })
 export class MainModuleModule {}

@@ -5,16 +5,16 @@
         <img src="../../../assets/image/logo-svg.svg" alt="" />
       </div>
       <div class="d-flex align-items-center profile-part">
-        <div class="mx-2 lable-btn">
+        <div class="mx-2 label-btn">
           <button
             class="d-flex align-items-center"
             nz-button
             nzType="primary"
             nzShape="round"
-            (click)="showModal('lableDialog')"
+            (click)="showModal('labelDialog')"
           >
             <span nz-icon nzType="plus" nzTheme="outline"></span>
-            Add lable
+            Add label
           </button>
         </div>
         <div class="ms-2 profile-div">
@@ -161,19 +161,21 @@
             class="my-3 text-center text-muted"
             *ngIf="list.cards.length <= 0"
           >
-            No cards available
+            No cards availabel
           </h4>
           <div class="card-section mb-2 p-2" *ngFor="let card of list.cards">
             <div class="d-flex align-items-center">
-              <div class="lable-part">
-                <p
-                  class="{{ lables.lableColor }}-lable"
-                  *ngFor="let lables of card.cardLables"
+              <div class="label-part">
+                <nz-tag
+                  *ngFor="let labels of card.cardLabels"
+                  [nzColor]="labels.labelColor"
+                  >{{ labels.labelName }}</nz-tag
                 >
-                  {{ lables.lableName | titlecase }}
-                </p>
               </div>
-              <div class="card-actions">
+              <div
+                class="card-actions"
+                *ngIf="card.creator.email === loginUser.email"
+              >
                 <span
                   class="mx-1"
                   nz-icon

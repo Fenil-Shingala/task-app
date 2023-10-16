@@ -37,20 +37,20 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzFor="cardLables">Lables</nz-form-label>
+      <nz-form-label nzFor="cardlabels">labels</nz-form-label>
       <nz-form-control>
         <nz-select
-          [(ngModel)]="listOfLables"
+          [(ngModel)]="listOfLabels"
           nzMode="tags"
           [nzTokenSeparators]="[',']"
-          nzPlaceHolder="Select lables"
-          formControlName="cardLables"
-          id="cardLables"
+          nzPlaceHolder="Select labels"
+          formControlName="cardLabels"
+          id="cardLabels"
         >
           <nz-option
-            *ngFor="let lable of allLables"
-            [nzLabel]="lable.lableName | titlecase"
-            [nzValue]="data.editData ? lable.lableName : lable"
+            *ngFor="let label of allLabels"
+            [nzLabel]="label.labelName | titlecase"
+            [nzValue]="data.editData ? label.labelName : label"
           ></nz-option>
         </nz-select>
       </nz-form-control>

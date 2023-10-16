@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ListModalComponent } from '../modals/list-modal/list-modal.component';
-import { LableModalComponent } from '../modals/lable-modal/lable-modal.component';
+import { LabelModalComponent } from '../modals/label-modal/label-modal.component';
 import { CardModalComponent } from '../modals/card-modal/card-modal.component';
 import { ListServiceService } from 'src/app/services/api-service/list-service/list-service.service';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
@@ -134,9 +134,9 @@ export class DashboardComponent {
     card?: Card,
     editCard?: boolean
   ): void {
-    if (dialog === 'lableDialog') {
-      const lableDialog = this.modal.create({
-        nzContent: LableModalComponent,
+    if (dialog === 'labelDialog') {
+      const labelDialog = this.modal.create({
+        nzContent: LabelModalComponent,
         nzFooter: null,
         nzStyle: { top: '20px' },
       });
