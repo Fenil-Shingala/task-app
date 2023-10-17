@@ -5,7 +5,6 @@ import { AuthModuleComponent } from './auth-module.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -30,7 +29,6 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzFormModule,
     NzInputModule,
     NzMessageModule,
-    ToastrModule.forRoot(),
   ],
 })
 export class AuthModuleModule {}
