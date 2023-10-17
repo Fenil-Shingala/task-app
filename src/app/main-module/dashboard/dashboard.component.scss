@@ -1,112 +1,112 @@
 .dashboard-div {
-  height: 100%;
+  // height: 100%;
   background: var(--color-white);
-  .top-bar {
-    border-bottom: 1px solid var(--color-platinum);
-    padding-top: 12px;
-    padding-bottom: 12px;
-    .logo-div {
-      img {
-        height: 30px;
-        cursor: pointer;
-      }
-    }
-    .profile-part {
-      .profile-div {
-        a {
-          span {
-            font-size: 14px;
-          }
-        }
-        nz-avatar {
-          background-color: #f56a00;
-        }
-      }
-    }
-  }
+  // .top-bar {
+  //   border-bottom: 1px solid var(--color-platinum);
+  //   padding-top: 12px;
+  //   padding-bottom: 12px;
+  //   .logo-div {
+  //     img {
+  //       height: 30px;
+  //       cursor: pointer;
+  //     }
+  //   }
+  //   .profile-part {
+  //     .profile-div {
+  //       a {
+  //         span {
+  //           font-size: 14px;
+  //         }
+  //       }
+  //       nz-avatar {
+  //         background-color: #f56a00;
+  //       }
+  //     }
+  //   }
+  // }
   .main-div {
-    .title {
-      h3 {
-        font-weight: bold;
-        span {
-          color: #fac65f;
-        }
-      }
-    }
-    .board-members {
-      p {
-        font-weight: bold;
-      }
-      .show-user {
-        background: var(--color-indian-red);
-      }
-      .count-user {
-        background-color: var(--color-almond);
-        color: var(--color-indian-red);
-      }
-      nz-avatar-group {
-        cursor: pointer;
-      }
-    }
-    .cards-list {
-      max-width: 100%;
-      min-height: 76vh;
-      overflow-x: auto;
-      .list {
-        min-width: 350px;
-        max-width: 350px;
-        .card-title {
-          border-bottom: 1px solid var(--color-platinum);
-          .title-text {
-            font-weight: bolder;
-            .badge {
-              background: var(--color-white-smoke);
-            }
-          }
-          .title-action {
-            a {
-              font-size: 18px;
-            }
-          }
-        }
-        .list-card-part {
-          border: 1px solid var(--color-platinum);
-          border-radius: 8px;
-          background: var(--color-white-smoke);
-          .card-section {
-            background: var(--color-white);
-            border-radius: 8px;
-            .label-part {
-              width: 82%;
-            }
-            .title {
-              font-weight: bold;
-            }
-            .card-actions {
-              display: none;
-              cursor: pointer;
-            }
-            &:hover {
-              .card-actions {
-                display: block;
-              }
-            }
-          }
-          .add-card-button {
-            button {
-              background: var(--color-white-smoke);
-            }
-          }
-        }
-      }
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--color-indian-red);
-      border-radius: 10px;
-    }
+    // .title {
+    //   h3 {
+    //     font-weight: bold;
+    //     span {
+    //       color: #fac65f;
+    //     }
+    //   }
+    // }
+    // .board-members {
+    //   p {
+    //     font-weight: bold;
+    //   }
+    //   .show-user {
+    //     background: var(--color-indian-red);
+    //   }
+    //   .count-user {
+    //     background-color: var(--color-almond);
+    //     color: var(--color-indian-red);
+    //   }
+    //   nz-avatar-group {
+    //     cursor: pointer;
+    //   }
+    // }
+    //   .cards-list {
+    //     max-width: 100%;
+    //     min-height: 76vh;
+    //     overflow-x: auto;
+    //     .list {
+    //       min-width: 350px;
+    //       max-width: 350px;
+    //       .card-title {
+    //         border-bottom: 1px solid var(--color-platinum);
+    //         .title-text {
+    //           font-weight: bolder;
+    //           .badge {
+    //             background: var(--color-white-smoke);
+    //           }
+    //         }
+    //         .title-action {
+    //           a {
+    //             font-size: 18px;
+    //           }
+    //         }
+    //       }
+    //       .list-card-part {
+    //         border: 1px solid var(--color-platinum);
+    //         border-radius: 8px;
+    //         background: var(--color-white-smoke);
+    //         .card-section {
+    //           background: var(--color-white);
+    //           border-radius: 8px;
+    //           .label-part {
+    //             width: 82%;
+    //           }
+    //           .title {
+    //             font-weight: bold;
+    //           }
+    //           .card-actions {
+    //             display: none;
+    //             cursor: pointer;
+    //           }
+    //           &:hover {
+    //             .card-actions {
+    //               display: block;
+    //             }
+    //           }
+    //         }
+    //         .add-card-button {
+    //           button {
+    //             background: var(--color-white-smoke);
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   ::-webkit-scrollbar {
+    //     width: 6px;
+    //     height: 6px;
+    //   }
+    //   ::-webkit-scrollbar-thumb {
+    //     background: var(--color-indian-red);
+    //     border-radius: 10px;
+    //   }
   }
 }

@@ -15,182 +15,108 @@
       </p>
     </div>
     <div class="m-2">
-      <form class="w-100" [formGroup]="registerForm" (ngSubmit)="submit()">
-        <div class="d-flex justify-content-between">
-          <div class="position-relative">
-            <p class="m-0 pb-2 pt-1 txt-13 email">
-              First Name <span class="text-danger">*</span>
-            </p>
+      <form
+        class="w-100"
+        nz-form
+        [formGroup]="registerForm"
+        (ngSubmit)="submit()"
+      >
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="me-1">
+            <nz-form-label nzRequired>First Name</nz-form-label>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please enter first name">
+                <input
+                  nz-input
+                  formControlName="firstName"
+                  placeholder="First Name"
+                  #firstName
+                  autofocus
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="ms-1">
+            <nz-form-label nzRequired>Last Name</nz-form-label>
+            <nz-form-item nzError>
+              <nz-form-control nzErrorTip="Please enter last name">
+                <input
+                  nz-input
+                  formControlName="lastName"
+                  placeholder="Last name"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <nz-form-label nzRequired>E-mail</nz-form-label>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
             <input
-              type="text"
-              class="w-95 p-2 input-field-style"
-              formControlName="firstName"
-              [ngStyle]="{
-                'outline-color':
-                  registerForm.controls['firstName'].invalid &&
-                  registerForm.controls['firstName'].touched
-                    ? 'red'
-                    : '#284ac1'
-              }"
+              nz-input
+              formControlName="email"
+              placeholder="Email"
+              type="email"
             />
-            <p
-              class="m-0 text-danger position-absolute txt-15"
-              *ngIf="
-                registerForm.controls['firstName'].invalid &&
-                registerForm.controls['firstName'].touched
-              "
-            >
-              Please enter first name
-            </p>
-          </div>
-          <div class="position-relative">
-            <p class="m-0 pb-2 pt-1 txt-13 email">
-              Last Name <span class="text-danger">*</span>
-            </p>
-            <input
-              type="text"
-              class="w-95 p-2 input-field-style"
-              [ngStyle]="{
-                'outline-color':
-                  registerForm.controls['lastName'].invalid &&
-                  registerForm.controls['lastName'].touched
-                    ? 'red'
-                    : '#284ac1'
-              }"
-              formControlName="lastName"
-            />
-            <p
-              class="m-0 text-danger position-absolute txt-15"
-              *ngIf="
-                registerForm.controls['lastName'].invalid &&
-                registerForm.controls['lastName'].touched
-              "
-            >
-              Please enter last name
-            </p>
-          </div>
-        </div>
-        <div class="position-relative">
-          <p class="m-0 pb-2 pt-1 txt-13 email mt-3">
-            Email <span class="text-danger">*</span>
-          </p>
-          <input
-            type="text"
-            class="w-100 p-2 input-field-style"
-            formControlName="email"
-            [ngStyle]="{
-              'outline-color':
-                registerForm.controls['email'].invalid &&
-                registerForm.controls['email'].touched
-                  ? 'red'
-                  : '#284ac1'
-            }"
-          />
-          <p
-            class="m-0 text-danger position-absolute"
-            *ngIf="
-              registerForm.controls['email'].invalid &&
-              registerForm.controls['email'].touched &&
-              !registerForm.controls['email'].hasError('duplicateEmailError')
-            "
+            <ng-template #emailErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('email')"
+                >The input is not valid E-mail!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your E-mail!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('duplicateEmailError')"
+                >Email has already registered</ng-container
+              >
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-label nzRequired>Password</nz-form-label>
+        <nz-form-item>
+          <nz-form-control
+            nzErrorTip="Min character 8 (uppe, lower, special, num)"
           >
-            Please enter valid email id
-          </p>
-          <p
-            class="m-0 text-danger position-absolute"
-            *ngIf="
-              registerForm.controls['email'].hasError('duplicateEmailError')
-            "
+            <nz-input-group [nzSuffix]="passwordInput">
+              <input
+                nz-input
+                [type]="passwordVisible ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="password"
+              />
+            </nz-input-group>
+            <ng-template #passwordInput>
+              <span
+                nz-icon
+                [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                (click)="passwordVisible = !passwordVisible"
+              ></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-label nzRequired>Confirm Password</nz-form-label>
+        <nz-form-item>
+          <nz-form-control
+            class="w-100"
+            nzErrorTip="Please enter your confirm password"
           >
-            Email already register
-          </p>
-        </div>
-        <div class="position-relative">
-          <p class="txt-13 m-0 pt-1 password mt-3">
-            Password <span class="text-danger">*</span>
-          </p>
-          <input
-            type="{{ passwordType }}"
-            class="w-100 p-2 input-field-style position-relative"
-            formControlName="password"
-            [ngStyle]="{
-              'outline-color':
-                registerForm.controls['password'].invalid &&
-                registerForm.controls['password'].touched
-                  ? 'red'
-                  : '#284ac1'
-            }"
-          />
-          <a
-            (click)="togglePasswordVisibility('password')"
-            class="border-0 fa-eye-position text-black"
-          >
-            <span
-              nz-icon
-              nzType="eye-invisible"
-              nzTheme="outline"
-              *ngIf="!passwordVisible"
-            ></span>
-            <span
-              nz-icon
-              nzType="eye"
-              nzTheme="outline"
-              *ngIf="passwordVisible"
-            ></span>
-          </a>
-          <div class="py-1 position-relative">
-            <p
-              class="m-0 text-danger position-absolute txt-15"
-              *ngIf="
-                registerForm.controls['password'].invalid &&
-                registerForm.controls['password'].touched
-              "
-            >
-              Min character 8 (uppe, lower, special, num)
-            </p>
-          </div>
-        </div>
-        <div class="position-relative mb-2">
-          <p class="txt-13 m-0 pt-1 password mt-2">
-            Confirm Password <span class="text-danger">*</span>
-          </p>
-          <input
-            type="{{ confirmPasswordType }}"
-            class="w-100 p-2 input-field-style position-relative"
-            formControlName="confirmPassword"
-            [ngStyle]="{
-              'outline-color':
-                registerForm.controls['confirmPassword'].invalid &&
-                registerForm.controls['confirmPassword'].touched
-                  ? 'red'
-                  : '#284ac1'
-            }"
-          />
-          <a
-            (click)="togglePasswordVisibility('confirmPassword')"
-            class="border-0 fa-eye-position text-black"
-          >
-            <span
-              nz-icon
-              nzType="eye-invisible"
-              nzTheme="outline"
-              *ngIf="!confirmPasswordVisible"
-            ></span>
-            <span
-              nz-icon
-              nzType="eye"
-              nzTheme="outline"
-              *ngIf="confirmPasswordVisible"
-            ></span>
-          </a>
-        </div>
-
-        <button
-          type="submit"
-          [disabled]="registerForm.invalid"
-          class="p-2 my-2 w-100 border-0 submit-btn"
-          [ngClass]="{ 'opacity-50': registerForm.invalid }"
-        >
+            <nz-input-group [nzSuffix]="confirmPasswordInput">
+              <input
+                nz-input
+                [type]="confirmPasswordVisible ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                placeholder="confirm your password"
+              />
+            </nz-input-group>
+            <ng-template #confirmPasswordInput>
+              <span
+                nz-icon
+                [nzType]="confirmPasswordVisible ? 'eye-invisible' : 'eye'"
+                (click)="confirmPasswordVisible = !confirmPasswordVisible"
+              ></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <button type="submit" class="p-2 my-2 w-100 border-0 submit-btn">
           Let's Roll
         </button>
       </form>

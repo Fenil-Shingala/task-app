@@ -1,182 +1,57 @@
 {
   "lists": [
     {
-      "listTitle": "ADCWSDC",
+      "listTitle": "NEW",
       "cards": [
         {
-          "cardTitle": "SDVD",
-          "assignee": [
-            {
-              "firstName": "Shubham",
-              "lastName": "Satasiya",
-              "email": "shubham@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 6
-            },
-            {
-              "firstName": "Nishant",
-              "lastName": "Vaghasiya",
-              "email": "nishant@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 8
-            },
-            {
-              "firstName": "Krushil",
-              "lastName": "Ghadiya",
-              "email": "krushil@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 4
-            },
-            {
-              "firstName": "Jayan",
-              "lastName": "Ribadiya",
-              "email": "jayan@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 3
-            },
-            {
-              "firstName": "Meet",
-              "lastName": "Vanpariya",
-              "email": "meet@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 2
-            }
-          ],
+          "cardTitle": "demo",
+          "assignee": [],
           "cardLabels": [
             {
-              "labelName": "dcd",
-              "labelColor": "cyan",
-              "id": 2
+              "labelName": "new",
+              "labelColor": "gold",
+              "id": 1
             },
             {
-              "labelName": "asfrfevc",
-              "labelColor": "magenta",
-              "id": 4
+              "labelName": "dsff",
+              "labelColor": "lime",
+              "id": 3
             }
           ],
-          "id": "316B25DB",
+          "id": "BDCFB6E4",
           "creator": {
             "firstName": "Fenil",
-            "lastName": "S",
+            "lastName": "Shingala",
             "email": "fenil@gmail.com",
             "password": "Fenil@123",
             "confirmPassword": "Fenil@123",
             "id": 1
-          },
-          "cardlabels": ["new", "asfrfevc"]
-        },
-        {
-          "cardTitle": "demo",
-          "assignee": [
-            {
-              "firstName": "Shubham",
-              "lastName": "Satasiya",
-              "email": "shubham@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 6
-            },
-            {
-              "firstName": "Dhaval",
-              "lastName": "Khankhal",
-              "email": "dhaval@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 5
-            },
-            {
-              "firstName": "Jayan",
-              "lastName": "Ribadiya",
-              "email": "jayan@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 3
-            },
-            {
-              "firstName": "Fenil",
-              "lastName": "S",
-              "email": "fenil@gmail.com",
-              "password": "Fenil@123",
-              "confirmPassword": "Fenil@123",
-              "id": 1
-            }
-          ],
-          "cardLabels": [
-            {
-              "labelName": "dcd",
-              "labelColor": "cyan",
-              "id": 2
-            },
-            {
-              "labelName": "dxcrdfv",
-              "labelColor": "blue",
-              "id": 3
-            },
-            {
-              "labelName": "efrwvdsczdec",
-              "labelColor": "lime",
-              "id": 5
-            }
-          ],
-          "id": "5688A366",
-          "creator": {
-            "firstName": "Meet",
-            "lastName": "Vanpariya",
-            "email": "meet@gmail.com",
-            "password": "Fenil@123",
-            "confirmPassword": "Fenil@123",
-            "id": 2
           }
         }
       ],
       "id": 1
-    },
-    {
-      "listTitle": "DMEO",
-      "cards": [],
-      "id": 3
     }
   ],
   "labels": [
     {
       "labelName": "new",
-      "labelColor": "green",
+      "labelColor": "gold",
       "id": 1
     },
     {
-      "labelName": "dcd",
-      "labelColor": "magenta",
+      "labelName": "asfcr",
+      "labelColor": "purple",
       "id": 2
     },
     {
-      "labelName": "dxcrdfv",
-      "labelColor": "blue",
+      "labelName": "dsff",
+      "labelColor": "lime",
       "id": 3
     },
     {
-      "labelName": "asfrfevc",
-      "labelColor": "gold",
+      "labelName": "dcfdv",
+      "labelColor": "magenta",
       "id": 4
-    },
-    {
-      "labelName": "efrwvdsczdec",
-      "labelColor": "cyan",
-      "id": 5
-    },
-    {
-      "labelName": "asdfewdcs",
-      "labelColor": "orange",
-      "id": 6
-    },
-    {
-      "labelName": "qwfeqca",
-      "labelColor": "lime",
-      "id": 7
     }
   ]
 }

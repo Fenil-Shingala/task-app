@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
-import { ToastrService } from 'ngx-toastr';
 import { Card } from 'src/app/interface/Card';
 import { Label } from 'src/app/interface/Label';
 import { List } from 'src/app/interface/List';
@@ -18,6 +18,7 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
   styleUrls: ['./card-modal.component.scss'],
 })
 export class CardModalComponent {
+  @ViewChild('cardInput') cardInput!: ElementRef;
   listOfAssignee: string[] = [];
   listOfLabels: string[] = [];
   allLabels: Label[] = [];
@@ -26,13 +27,13 @@ export class CardModalComponent {
   cardForm!: FormGroup;
 
   constructor(
-    private toastr: ToastrService,
     private cardFormBuilder: FormBuilder,
     private sharedService: SharedServiceService,
     private userService: UserServiceService,
     private labelService: LabelServiceService,
     private cardService: CardServiceService,
     private modalService: NzModalService,
+    private message: NzMessageService,
     @Inject(NZ_MODAL_DATA)
     public data: {
       cardData: Card;
@@ -66,6 +67,12 @@ export class CardModalComponent {
     }
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.cardInput.nativeElement.focus();
+    }, 300);
+  }
+
   uuid(): string {
     return (((1 + Math.random()) * 0x10000) | 0)
       .toString(16)
@@ -92,6 +99,10 @@ export class CardModalComponent {
   }
 
   submit(): void {
+    if (this.cardForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.cardForm);
+      return;
+    }
     const newCardlabels = this.cardForm.controls['cardLabels'].value.map(
       (value: string) => {
         const filterLabel = this.allLabels.find(
@@ -131,7 +142,7 @@ export class CardModalComponent {
         .updateCard(this.data.listId, this.data.cardData.id, updatedCard)
         .subscribe({
           next: () => {
-            this.toastr.success('Card updated successfully', 'Card updated');
+            this.message.success('Card updated');
             this.modalService.closeAll();
           },
           error: () => {},
@@ -139,7 +150,7 @@ export class CardModalComponent {
     } else {
       this.cardService.addcard(updatedCard, this.data.listData.id).subscribe({
         next: () => {
-          this.toastr.success('Card added successfully', 'Card added');
+          this.message.success('Card added');
           this.modalService.closeAll();
         },
         error: () => {},

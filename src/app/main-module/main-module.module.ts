@@ -19,8 +19,13 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { ListsComponent } from './lists/lists.component';
+import { CardsComponent } from './cards/cards.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ListModalComponent,
     LabelModalComponent,
     CardModalComponent,
+    TopBarComponent,
+    ListsComponent,
+    CardsComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +55,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NzFormModule,
     NzTableModule,
     NzSelectModule,
+    NzMessageModule,
     NzPopconfirmModule,
     DragDropModule,
     NzTagModule,

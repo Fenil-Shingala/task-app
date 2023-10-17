@@ -1,0 +1,100 @@
+<div class="main-div">
+  <div class="top-bar p-2">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="logo-div" (click)="reloadPage()">
+        <img src="../../../assets/image/logo-svg.svg" alt="" />
+      </div>
+      <div class="d-flex align-items-center profile-part">
+        <div class="mx-2 label-btn">
+          <button
+            class="d-flex align-items-center"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            (click)="showModal('labelDialog')"
+          >
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            Add label
+          </button>
+        </div>
+        <div class="ms-2 profile-div">
+          <a
+            class="d-flex align-items-center"
+            nz-dropdown
+            nzTrigger="click"
+            [nzDropdownMenu]="menu"
+          >
+            <nz-avatar-group class="mx-1">
+              <nz-avatar
+                nzText="{{ loginUser.firstName[0] + loginUser.lastName[0] }}"
+              ></nz-avatar>
+            </nz-avatar-group>
+            <span nz-icon nzType="down"></span>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item routerLink="/main-module/change-password">
+                <span
+                  class="pe-1"
+                  nz-icon
+                  nzType="security-scan"
+                  nzTheme="outline"
+                ></span
+                >Change password
+              </li>
+              <li nz-menu-item (click)="logout()">
+                <span
+                  class="pe-1"
+                  nz-icon
+                  nzType="logout"
+                  nzTheme="outline"
+                ></span>
+                Logout
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="title px-2 mb-2">
+    <h3 class="d-flex align-items-center m-0">
+      Product Development
+      <span nz-icon class="ps-2" nzType="star" nzTheme="fill"></span>
+    </h3>
+  </div>
+
+  <div class="board-members mt-1 px-2">
+    <p class="m-0">Members on boards</p>
+    <nz-avatar-group (click)="showModal('boardMemberDialog')">
+      <nz-avatar
+        class="show-user"
+        *ngFor="let user of allUserData.slice(0, 5)"
+        nzText="{{ user.firstName[0] + user.lastName[0] | uppercase }}"
+      ></nz-avatar>
+      <nz-avatar
+        *ngIf="allUserData.length > 5"
+        class="count-user"
+        nzText="+{{ allUserData.length - 5 }}"
+      ></nz-avatar>
+    </nz-avatar-group>
+    <nz-modal
+      [(nzVisible)]="boardMember"
+      nzTitle="All board members"
+      (nzOnCancel)="closeMemberDialog()"
+      [nzFooter]="null"
+    >
+      <ng-container *nzModalContent>
+        <div>
+          <p
+            class="m-0 d-flex align-items-center"
+            *ngFor="let user of allUserData"
+          >
+            <span class="pe-1" nz-icon nzType="user" nzTheme="outline"></span>
+            {{ user.firstName + " " + user.lastName }}
+          </p>
+        </div>
+      </ng-container>
+    </nz-modal>
+  </div>
+</div>

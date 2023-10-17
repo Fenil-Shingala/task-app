@@ -1,0 +1,49 @@
+.main-div {
+  background: var(--color-white);
+  .top-bar {
+    border-bottom: 1px solid var(--color-platinum);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    .logo-div {
+      img {
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+    .profile-part {
+      .profile-div {
+        a {
+          span {
+            font-size: 14px;
+          }
+        }
+        nz-avatar {
+          background-color: var(--color-orange);
+        }
+      }
+    }
+  }
+  .title {
+    h3 {
+      font-weight: bold;
+      span {
+        color: var(--color-gold);
+      }
+    }
+  }
+  .board-members {
+    p {
+      font-weight: bold;
+    }
+    .show-user {
+      background: var(--color-indian-red);
+    }
+    .count-user {
+      background-color: var(--color-almond);
+      color: var(--color-indian-red);
+    }
+    nz-avatar-group {
+      cursor: pointer;
+    }
+  }
+}

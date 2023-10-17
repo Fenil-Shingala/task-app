@@ -1,7 +1,12 @@
-<form nz-form [formGroup]="listForm" (ngSubmit)="addListSubmit()">
+<form nz-form [formGroup]="listForm" (ngSubmit)="submit()">
   <nz-form-item>
     <nz-form-control nzHasFeedback [nzErrorTip]="listTitle">
-      <input formControlName="listTitle" nz-input placeholder="List title" />
+      <input
+        nz-input
+        formControlName="listTitle"
+        placeholder="List title"
+        #listInput
+      />
       <ng-template #listTitle let-control>
         <ng-container *ngIf="control.hasError('duplicateTitleError')"
           >The title is already assigned in another list</ng-container
@@ -22,12 +27,7 @@
       <button type="button" class="me-2" nz-button (click)="closeModal()">
         Cancel
       </button>
-      <button
-        type="submit"
-        nz-button
-        nzType="primary"
-        [disabled]="listForm.invalid"
-      >
+      <button type="submit" nz-button nzType="primary">
         {{ editListData ? "Update" : "Add" }}
       </button>
     </nz-form-control>

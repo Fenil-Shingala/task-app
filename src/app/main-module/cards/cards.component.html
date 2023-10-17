@@ -1,0 +1,65 @@
+<div class="cards-main-div">
+  <div class="list-card-part mt-3 p-2">
+    <h4 class="my-3 text-center text-muted" *ngIf="cards.length <= 0">
+      No cards availabel
+    </h4>
+    <div class="card-section mb-2 p-2" *ngFor="let card of cards">
+      <div class="d-flex align-items-center position-relative">
+        <div class="label-part">
+          <nz-tag
+            *ngFor="let labels of card.cardLabels"
+            [nzColor]="labels.labelColor"
+            >{{ labels.labelName }}</nz-tag
+          >
+        </div>
+        <div
+          class="card-actions position-absolute end-0 pt-2"
+          *ngIf="card.creator.email === loginUser.email"
+        >
+          <span
+            class="mx-1"
+            nz-icon
+            nzType="edit"
+            nzTheme="outline"
+            (click)="showModal(currentList, card, true)"
+          ></span>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure delete this card?"
+            (nzOnConfirm)="deletCard(currentList.id, card.id)"
+            [nzCancelText]="'Cancel'"
+            [nzOkText]="'Delete'"
+          >
+            <span class="mx-1" nz-icon nzType="delete" nzTheme="outline"></span>
+          </a>
+        </div>
+      </div>
+      <div class="title my-1">{{ card.cardTitle }}</div>
+      <div class="avatar">
+        <div>
+          <nz-avatar
+            *ngFor="let user of card.assignee.slice(0, 3); let i = index"
+            nzSize="small"
+            nzText="{{ user.firstName[0] + user.lastName[0] | uppercase }}"
+          ></nz-avatar>
+          <nz-avatar
+            *ngIf="card.assignee.length > 3"
+            nzSize="small"
+            nzText="+{{ card.assignee.length - 3 }}"
+          ></nz-avatar>
+        </div>
+      </div>
+    </div>
+    <div class="add-card-button mt-2">
+      <button
+        class="border-0 w-100 d-flex align-items-center justify-content-center"
+        nz-button
+        nzType="default"
+        (click)="showModal(currentList)"
+      >
+        <span class="pe-1" nz-icon nzType="plus" nzTheme="outline"></span>Add
+        card
+      </button>
+    </div>
+  </div>
+</div>

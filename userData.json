@@ -2,91 +2,19 @@
   "userData": [
     {
       "firstName": "Fenil",
-      "lastName": "S",
+      "lastName": "Shingala",
       "email": "fenil@gmail.com",
       "password": "Fenil@123",
       "confirmPassword": "Fenil@123",
       "id": 1
     },
     {
-      "firstName": "Meet",
-      "lastName": "Vanpariya",
-      "email": "meet@gmail.com",
+      "firstName": "d",
+      "lastName": "d",
+      "email": "d@gmail.com",
       "password": "Fenil@123",
       "confirmPassword": "Fenil@123",
       "id": 2
-    },
-    {
-      "firstName": "Jayan",
-      "lastName": "Ribadiya",
-      "email": "jayan@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 3
-    },
-    {
-      "firstName": "Krushil",
-      "lastName": "Ghadiya",
-      "email": "krushil@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 4
-    },
-    {
-      "firstName": "Dhaval",
-      "lastName": "Khankhal",
-      "email": "dhaval@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 5
-    },
-    {
-      "firstName": "Shubham",
-      "lastName": "Satasiya",
-      "email": "shubham@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 6
-    },
-    {
-      "firstName": "Tejas",
-      "lastName": "Padmani",
-      "email": "tejas@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 7
-    },
-    {
-      "firstName": "Nishant",
-      "lastName": "Vaghasiya",
-      "email": "nishant@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 8
-    },
-    {
-      "firstName": "Dev",
-      "lastName": "Kundiya",
-      "email": "dev@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 9
-    },
-    {
-      "firstName": "Dharmik",
-      "lastName": "Dudhat",
-      "email": "dharmik@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 10
-    },
-    {
-      "firstName": "Mayank",
-      "lastName": "Rupareliya",
-      "email": "mayank@gmail.com",
-      "password": "Fenil@123",
-      "confirmPassword": "Fenil@123",
-      "id": 11
     }
   ]
 }

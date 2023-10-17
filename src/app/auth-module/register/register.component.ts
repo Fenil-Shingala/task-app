@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { User } from 'src/app/interface/User';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
@@ -20,7 +20,7 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{3,4}$';
+  @ViewChild('firstName') firstNameInput!: ElementRef;
   passwordPattern = this.sharedService.passwordPattern;
   passwordVisible = false;
   confirmPasswordVisible = false;
@@ -32,15 +32,15 @@ export class RegisterComponent {
   constructor(
     private registerFormBuilder: FormBuilder,
     private route: Router,
-    private toastr: ToastrService,
     private sharedService: SharedServiceService,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private message: NzMessageService
   ) {}
 
   ngOnInit(): void {
     this.sharedService.getLoginUser()
       ? this.route.navigate(['/main-module/dashboard'])
-      : this.route.navigate(['/auth-module/login']);
+      : this.route.navigate(['/auth-module/register']);
     this.registerForm = this.registerFormBuilder.group({
       firstName: ['', [Validators.required, noSpace.noSpaceValidator]],
       lastName: ['', [Validators.required, noSpace.noSpaceValidator]],
@@ -48,7 +48,7 @@ export class RegisterComponent {
         '',
         [
           Validators.required,
-          Validators.pattern(this.emailPattern),
+          Validators.email,
           noSpace.noSpaceValidator,
           this.checkDuplicateEmail(),
         ],
@@ -68,6 +68,10 @@ export class RegisterComponent {
     this.getUserData();
   }
 
+  ngAfterViewInit() {
+    this.firstNameInput.nativeElement.focus();
+  }
+
   getUserData(): void {
     this.userService.getUserData().subscribe({
       next: (data) => {
@@ -77,23 +81,11 @@ export class RegisterComponent {
     });
   }
 
-  togglePasswordVisibility(field: string): void {
-    if (field === 'password') {
-      this.passwordType = this.togglePasswordType(this.passwordType);
-      this.passwordVisible = !this.passwordVisible;
-    } else if (field === 'confirmPassword') {
-      this.confirmPasswordType = this.togglePasswordType(
-        this.confirmPasswordType
-      );
-      this.confirmPasswordVisible = !this.confirmPasswordVisible;
-    }
-  }
-
-  togglePasswordType(type: string): string {
-    return type === 'password' ? 'text' : 'password';
-  }
-
   submit(): void {
+    if (this.registerForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.registerForm);
+      return;
+    }
     if (
       this.registerForm.value.confirmPassword ===
       this.registerForm.value.password
@@ -105,16 +97,15 @@ export class RegisterComponent {
         email: this.registerForm.value.email.trim(),
         password: this.registerForm.value.password.trim(),
         confirmPassword: this.registerForm.value.confirmPassword.trim(),
-        lists: [],
       };
       this.userService.addUserData(updatedData).subscribe({
         next: () => {
           this.route.navigate(['']);
-          this.toastr.success('Successfully registered', 'Register');
+          this.message.success('Successfully registered');
         },
       });
     } else {
-      this.toastr.error('Please check both password', 'Error');
+      this.message.error('Please check both password');
     }
   }
 

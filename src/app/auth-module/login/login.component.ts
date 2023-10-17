@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { User } from 'src/app/interface/User';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
+import { noSpace } from 'src/app/validators/noSpace.validators';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +18,7 @@ import { SharedServiceService } from 'src/app/services/shared-service/shared-ser
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @ViewChild('emailElement') emailInput!: ElementRef;
   passwordVisible = false;
   passwordType!: string;
   allUserData: User[] = [];
@@ -20,9 +27,10 @@ export class LoginComponent {
   constructor(
     private loginFormBuilder: FormBuilder,
     private route: Router,
-    private toastr: ToastrService,
     private userService: UserServiceService,
-    private sharedService: SharedServiceService
+    private sharedService: SharedServiceService,
+    private message: NzMessageService,
+    private changeDetectRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -30,11 +38,19 @@ export class LoginComponent {
       ? this.route.navigate(['/main-module/dashboard'])
       : this.route.navigate(['/auth-module/login']);
     this.loginForm = this.loginFormBuilder.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      email: [
+        '',
+        [Validators.required, noSpace.noSpaceValidator, Validators.email],
+      ],
+      password: ['', [Validators.required, noSpace.noSpaceValidator]],
     });
     this.passwordType = 'password';
     this.getUserData();
+  }
+
+  ngAfterViewInit() {
+    this.emailInput.nativeElement?.focus();
+    this.changeDetectRef.detectChanges();
   }
 
   getUserData(): void {
@@ -46,17 +62,11 @@ export class LoginComponent {
     });
   }
 
-  passwordShow(): void {
-    if (this.passwordType === 'password') {
-      this.passwordType = 'text';
-      this.passwordVisible = true;
-    } else {
-      this.passwordType = 'password';
-      this.passwordVisible = false;
-    }
-  }
-
   submit(): void {
+    if (this.loginForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.loginForm);
+      return;
+    }
     const chechAvability = this.allUserData.find(
       (user) =>
         user.email === this.loginForm.value.email &&
@@ -65,9 +75,9 @@ export class LoginComponent {
     if (chechAvability) {
       this.route.navigate(['/main-module/dashboard']);
       localStorage.setItem('loginUser', JSON.stringify(chechAvability));
-      this.toastr.success('Login Successfully', 'Login');
+      this.message.success('Login Successfully');
     } else {
-      this.toastr.error('Your credential are wrong', 'Login');
+      this.message.error('Your credential are wrong');
     }
   }
 }

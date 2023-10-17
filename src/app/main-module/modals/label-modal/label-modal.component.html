@@ -5,7 +5,12 @@
   <form nz-form [formGroup]="labelForm" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-control [nzErrorTip]="labelTitle">
-        <input nz-input formControlName="labelName" placeholder="label title" />
+        <input
+          nz-input
+          formControlName="labelName"
+          placeholder="label title"
+          #lableInput
+        />
         <ng-template #labelTitle let-control>
           <ng-container *ngIf="labelForm.controls['labelName'].invalid"
             >Please enter label name</ng-container

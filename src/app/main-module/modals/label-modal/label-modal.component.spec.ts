@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { labelModalComponent } from './label-modal.component';
+import { LabelModalComponent } from './label-modal.component';
 
 describe('labelModalComponent', () => {
-  let component: labelModalComponent;
-  let fixture: ComponentFixture<labelModalComponent>;
+  let component: LabelModalComponent;
+  let fixture: ComponentFixture<LabelModalComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [labelModalComponent],
+      declarations: [LabelModalComponent],
     });
-    fixture = TestBed.createComponent(labelModalComponent);
+    fixture = TestBed.createComponent(LabelModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

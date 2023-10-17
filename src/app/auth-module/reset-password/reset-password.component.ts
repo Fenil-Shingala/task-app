@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
 import { noSpace } from 'src/app/validators/noSpace.validators';
@@ -12,10 +17,9 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent {
+  @ViewChild('passwordElement') passwordInput!: ElementRef;
   passwordVisible = false;
   confirmPasswordVisible = false;
-  passwordType!: string;
-  confirmPasswordType!: string;
   passwordPattern = this.sharedService.passwordPattern;
   resetPasswordForm!: FormGroup;
   forgotPasswordUserData = sessionStorage.getItem('forgotPassword')
@@ -26,14 +30,15 @@ export class ResetPasswordComponent {
     private resetPasswordFormBuilder: FormBuilder,
     private sharedService: SharedServiceService,
     private userService: UserServiceService,
-    private toastr: ToastrService,
-    private route: Router
+    private message: NzMessageService,
+    private route: Router,
+    private changeDetectRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.sharedService.getLoginUser()
       ? this.route.navigate(['/main-module/dashboard'])
-      : this.route.navigate(['/auth-module/login']);
+      : this.route.navigate(['/auth-module/reset-password']);
     this.resetPasswordForm = this.resetPasswordFormBuilder.group({
       password: [
         '',
@@ -45,20 +50,11 @@ export class ResetPasswordComponent {
       ],
       confirmPassword: ['', [Validators.required, noSpace.noSpaceValidator]],
     });
-    this.passwordType = 'password';
-    this.confirmPasswordType = 'password';
   }
 
-  togglePasswordVisibility(field: string): void {
-    if (field === 'password') {
-      this.passwordType = this.togglePasswordType(this.passwordType);
-      this.passwordVisible = !this.passwordVisible;
-    } else if (field === 'confirmPassword') {
-      this.confirmPasswordType = this.togglePasswordType(
-        this.confirmPasswordType
-      );
-      this.confirmPasswordVisible = !this.confirmPasswordVisible;
-    }
+  ngAfterViewInit() {
+    this.passwordInput.nativeElement.focus();
+    this.changeDetectRef.detectChanges();
   }
 
   togglePasswordType(type: string): string {
@@ -66,6 +62,10 @@ export class ResetPasswordComponent {
   }
 
   submit(): void {
+    if (this.resetPasswordForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.resetPasswordForm);
+      return;
+    }
     if (
       this.resetPasswordForm.value.password ===
       this.resetPasswordForm.value.confirmPassword
@@ -76,16 +76,13 @@ export class ResetPasswordComponent {
       };
       this.userService.updateUserData(updatedData, updatedData.id).subscribe({
         next: () => {
-          this.toastr.success(
-            'Password changed successfully',
-            'Reset Password'
-          );
+          this.message.success('Password changed');
           sessionStorage.removeItem('forgotPassword');
           this.route.navigate(['/auth-module/login']);
         },
       });
     } else {
-      this.toastr.error('Password not match', 'Reset Password');
+      this.message.error('Password not match');
     }
   }
 

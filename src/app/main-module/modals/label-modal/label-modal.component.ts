@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Label } from 'src/app/interface/Label';
 import { LabelServiceService } from 'src/app/services/api-service/lable-service/lable-service.service';
 import { noSpace } from 'src/app/validators/noSpace.validators';
@@ -11,6 +11,7 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
   styleUrls: ['./label-modal.component.scss'],
 })
 export class LabelModalComponent {
+  @ViewChild('lableInput') lableInput!: ElementRef;
   formSubmitted = false;
   labelColors = [
     'red',
@@ -28,14 +29,21 @@ export class LabelModalComponent {
   labelForm!: FormGroup;
 
   constructor(
-    private toastr: ToastrService,
     private labelFormBuilder: FormBuilder,
-    private labelService: LabelServiceService
-  ) {}
+    private labelService: LabelServiceService,
+    private message: NzMessageService
+  ) {
+    this.addlabelForm();
+  }
 
   ngOnInit() {
     this.getAlllabels();
-    this.addlabelForm();
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.lableInput.nativeElement.focus();
+    }, 300);
   }
 
   addlabelForm(editListData?: Label): void {
@@ -43,11 +51,9 @@ export class LabelModalComponent {
       labelName: ['', [Validators.required, noSpace.noSpaceValidator]],
       labelColor: ['', [Validators.required]],
     });
-
     if (editListData) {
       this.labelForm.controls['labelName'].patchValue(editListData.labelName);
       this.labelForm.controls['labelColor'].patchValue(editListData.labelColor);
-    } else {
     }
   }
 
@@ -71,8 +77,8 @@ export class LabelModalComponent {
         .updateLabel(this.labelForm.value, this.editlabelData.id)
         .subscribe({
           next: () => {
+            this.message.success('Label updated');
             this.getAlllabels();
-            this.toastr.success('label updated successfully', 'label updated');
             this.resetForm();
           },
           error: () => {},
@@ -80,7 +86,7 @@ export class LabelModalComponent {
     } else {
       this.labelService.addLabels(updatedlabel).subscribe({
         next: () => {
-          this.toastr.success('label added successfully', 'label added');
+          this.message.success('Lable added');
           this.getAlllabels();
           this.resetForm();
         },
@@ -102,6 +108,7 @@ export class LabelModalComponent {
   deletelabel(labelId: number): void {
     this.labelService.deleteLabel(labelId).subscribe({
       next: () => {
+        this.message.error('Lable deleted');
         this.getAlllabels();
         this.labelForm.reset();
       },

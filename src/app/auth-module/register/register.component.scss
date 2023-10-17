@@ -1,46 +1,4 @@
 form {
-  input {
-    outline-color: var(--color-blue);
-  }
-  .input-field-style {
-    border-radius: 8px;
-    border: 0.5px solid rgb(128, 128, 128, 0.3);
-  }
-  .txt-13 {
-    font-size: 13px;
-  }
-  .txt-15 {
-    font-size: 15px;
-  }
-  .email,
-  .password,
-  .register-txt {
-    -webkit-text-stroke-width: thin;
-  }
-  .input-field-select {
-    border: 0.5px solid rgb(128, 128, 128, 0.3);
-    border-radius: 8px;
-    padding: 8.8px;
-  }
-  .input-field-number {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border: 0.5px solid rgb(128, 128, 128, 0.3);
-    border-left: 0;
-    width: 75%;
-  }
-  .w-95 {
-    width: 95%;
-  }
-  .fa-eye-position {
-    margin-left: -30px;
-    cursor: pointer;
-    opacity: 0.8;
-    background: transparent;
-    font-size: 18px;
-    position: absolute;
-    top: 37%;
-  }
   .submit-btn {
     cursor: pointer;
     border-radius: 8px;

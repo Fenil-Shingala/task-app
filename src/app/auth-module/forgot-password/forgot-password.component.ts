@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { User } from 'src/app/interface/User';
 import { UserServiceService } from 'src/app/services/api-service/user-service/user-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
@@ -12,6 +17,7 @@ import { SharedServiceService } from 'src/app/services/shared-service/shared-ser
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent {
+  @ViewChild('emailInput') email!: ElementRef;
   allUserData: User[] = [];
   forgotPasswordForm!: FormGroup;
 
@@ -19,18 +25,24 @@ export class ForgotPasswordComponent {
     private forgotPasswordFormBuilder: FormBuilder,
     private userService: UserServiceService,
     private sharedService: SharedServiceService,
-    private toastr: ToastrService,
-    private route: Router
+    private message: NzMessageService,
+    private route: Router,
+    private changeDetectRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.sharedService.getLoginUser()
       ? this.route.navigate(['/main-module/dashboard'])
-      : this.route.navigate(['/auth-module/login']);
+      : this.route.navigate(['/auth-module/forgot-password']);
     this.forgotPasswordForm = this.forgotPasswordFormBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
     });
     this.getUserData();
+  }
+
+  ngAfterViewInit() {
+    this.email.nativeElement?.focus();
+    this.changeDetectRef.detectChanges();
   }
 
   getUserData(): void {
@@ -43,18 +55,22 @@ export class ForgotPasswordComponent {
   }
 
   submit(): void {
+    if (this.forgotPasswordForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.forgotPasswordForm);
+      return;
+    }
     const checkEmailAvability = this.allUserData.find(
       (value) => value.email === this.forgotPasswordForm.value.email
     );
     if (checkEmailAvability) {
-      this.toastr.success('Email matched', 'Forgot Password');
-      sessionStorage.setItem(
+      this.message.success('Email matched');
+      this.sharedService.setItemSessionStorage(
         'forgotPassword',
-        JSON.stringify(checkEmailAvability)
+        checkEmailAvability
       );
       this.route.navigate(['/auth-module/reset-password']);
     } else {
-      this.toastr.error('Email does not match', 'Forgot Password');
+      this.message.error('Email dose not exist');
     }
   }
 

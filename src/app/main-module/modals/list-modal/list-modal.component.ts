@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,10 +7,11 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
-import { ToastrService } from 'ngx-toastr';
 import { List } from 'src/app/interface/List';
 import { ListServiceService } from 'src/app/services/api-service/list-service/list-service.service';
+import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
 import { noSpace } from 'src/app/validators/noSpace.validators';
 
 @Component({
@@ -19,14 +20,16 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
   styleUrls: ['./list-modal.component.scss'],
 })
 export class ListModalComponent {
+  @ViewChild('listInput') listInput!: ElementRef;
   allLists: List[] = [];
   listForm!: FormGroup;
 
   constructor(
-    private toastr: ToastrService,
     private addListFormBuilder: FormBuilder,
+    private sharedService: SharedServiceService,
     private listService: ListServiceService,
     private modalService: NzModalService,
+    private message: NzMessageService,
     @Inject(NZ_MODAL_DATA) public editListData: List
   ) {}
 
@@ -49,6 +52,12 @@ export class ListModalComponent {
       : '';
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.listInput.nativeElement.focus();
+    }, 300);
+  }
+
   getAllLists(): void {
     this.listService.getList().subscribe({
       next: (value) => {
@@ -58,7 +67,11 @@ export class ListModalComponent {
     });
   }
 
-  addListSubmit(): void {
+  submit(): void {
+    if (this.listForm.invalid) {
+      this.sharedService.showErrorOnSubmit(this.listForm);
+      return;
+    }
     const updatedList = {
       ...this.listForm.value,
       listTitle: this.listForm.value.listTitle.toUpperCase().trim(),
@@ -67,7 +80,7 @@ export class ListModalComponent {
     if (this.editListData) {
       this.listService.updateList(updatedList, this.editListData.id).subscribe({
         next: () => {
-          this.toastr.success('List updated successfully', 'List updated');
+          this.message.success('List updated');
           this.modalService.closeAll();
         },
         error: () => {},
@@ -75,7 +88,7 @@ export class ListModalComponent {
     } else {
       this.listService.addList(updatedList).subscribe({
         next: () => {
-          this.toastr.success('List added successfully', 'List added');
+          this.message.success('List added');
           this.modalService.closeAll();
         },
         error: () => {},

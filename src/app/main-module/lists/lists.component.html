@@ -1,0 +1,75 @@
+<div class="lists-main-div">
+  <div class="cards-list mt-2 d-flex">
+    <div class="list m-2 mt-0" *ngFor="let list of filteredLists">
+      <div class="card-title d-flex align-items-center justify-content-between">
+        <p class="mb-1 title-text d-flex align-items-center">
+          <span class="pe-1">{{ list.listTitle }}</span>
+          <nz-badge
+            class="bedge"
+            nzStandalone
+            [nzCount]="list.cards.length"
+            [nzStyle]="{
+                  backgroundColor: '#f5f5f5',
+                  color: 'black',
+                }"
+          ></nz-badge>
+        </p>
+        <p class="mb-1 title-action">
+          <a
+            class="text-secondary"
+            nz-dropdown
+            nzTrigger="click"
+            [nzDropdownMenu]="cardMenu"
+          >
+            <span nz-icon nzType="ellipsis"></span>
+          </a>
+          <nz-dropdown-menu #cardMenu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="showModal(list)">
+                <span
+                  class="pe-1"
+                  nz-icon
+                  nzType="edit"
+                  nzTheme="outline"
+                ></span
+                >Edit
+              </li>
+              <li
+                nz-menu-item
+                nz-popconfirm
+                nzPopconfirmTitle="Are you sure delete this list?"
+                (nzOnConfirm)="deleteList(list.id)"
+                [nzCancelText]="'Cancel'"
+                [nzOkText]="'Delete'"
+              >
+                <span
+                  class="pe-1"
+                  nz-icon
+                  nzType="delete"
+                  nzTheme="outline"
+                ></span
+                >Delete
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </p>
+      </div>
+      <app-cards
+        [cards]="list.cards"
+        [loginUser]="loginUser"
+        [currentList]="list"
+        (filterList)="getAllLists()"
+      ></app-cards>
+    </div>
+    <button
+      class="d-flex align-items-center"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      (click)="showModal()"
+    >
+      <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+      Add list
+    </button>
+  </div>
+</div>

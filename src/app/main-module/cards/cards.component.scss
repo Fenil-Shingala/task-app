@@ -1,0 +1,31 @@
+.cards-main-div {
+  .list-card-part {
+    border: 1px solid var(--color-platinum);
+    border-radius: 8px;
+    background: var(--color-white-smoke);
+    .card-section {
+      background: var(--color-white);
+      border-radius: 8px;
+      .label-part {
+        width: 82%;
+      }
+      .title {
+        font-weight: bold;
+      }
+      .card-actions {
+        display: none;
+        cursor: pointer;
+      }
+      &:hover {
+        .card-actions {
+          display: block;
+        }
+      }
+    }
+    .add-card-button {
+      button {
+        background: var(--color-white-smoke);
+      }
+    }
+  }
+}

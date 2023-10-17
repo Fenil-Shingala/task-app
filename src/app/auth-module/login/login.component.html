@@ -16,60 +16,56 @@
     </div>
     <div class="form-part">
       <div class="m-2">
-        <form class="w-100" [formGroup]="loginForm" (ngSubmit)="submit()">
-          <div>
-            <p class="m-0 pb-2 pt-1 txt-13 email">
-              Email <span class="text-danger">*</span>
-            </p>
-            <input
-              type="text"
-              class="w-100 p-2 input-field-style"
-              formControlName="email"
-              [ngStyle]="{
-                'outline-color':
-                  loginForm.controls['email'].invalid &&
-                  loginForm.controls['email'].touched
-                    ? 'red'
-                    : '#284ac1'
-              }"
-            />
-          </div>
-          <div>
-            <p class="txt-13 m-0 mt-3 password">
-              Password <span class="text-danger">*</span>
-            </p>
-            <input
-              type="{{ passwordType }}"
-              class="w-100 p-2 input-field-style position-relative"
-              name="password"
-              formControlName="password"
-              [ngStyle]="{
-                'outline-color':
-                  loginForm.controls['password'].invalid &&
-                  loginForm.controls['password'].touched
-                    ? 'red'
-                    : '#284ac1'
-              }"
-            />
-            <a
-              (click)="passwordShow()"
-              class="border-0 fa-eye-position text-black"
-            >
-              <span
-                nz-icon
-                nzType="eye-invisible"
-                nzTheme="outline"
-                *ngIf="!passwordVisible"
-              ></span>
-              <span
-                nz-icon
-                nzType="eye"
-                nzTheme="outline"
-                *ngIf="passwordVisible"
-              ></span>
-            </a>
-          </div>
-          <p class="remember-txt mt-2">
+        <form
+          nz-form
+          class="w-100"
+          [formGroup]="loginForm"
+          (ngSubmit)="submit()"
+        >
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+              <nz-input-group nzPrefixIcon="mail">
+                <input
+                  nz-input
+                  formControlName="email"
+                  placeholder="Email"
+                  type="email"
+                  class="p-1"
+                  #emailElement
+                  autofocus
+                />
+              </nz-input-group>
+              <ng-template #emailErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('email')"
+                  >The input is not valid E-mail!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('required')"
+                  >Please input your E-mail!</ng-container
+                >
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  formControlName="password"
+                  placeholder="Password"
+                  class="p-1"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <span
+                  nz-icon
+                  [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                  (click)="passwordVisible = !passwordVisible"
+                ></span>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <p class="remember-txt m-0">
             <span class="d-flex"
               ><input type="checkbox" id="remember" class="cursor-pointer" />
               <label for="remember" class="remeber-checkbox">Remember Me</label>
@@ -80,7 +76,9 @@
               >Forgot Password?</a
             >
           </p>
-          <button class="p-2 my-2 w-100 border-0 login-btn">Login</button>
+          <button nz-button class="p-2 my-2 w-100 border-0 login-btn">
+            Login
+          </button>
         </form>
       </div>
       <div class="d-flex justify-content-between m-2">
