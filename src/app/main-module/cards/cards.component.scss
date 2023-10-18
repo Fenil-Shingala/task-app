@@ -6,9 +6,6 @@
     .card-section {
       background: var(--color-white);
       border-radius: 8px;
-      .label-part {
-        width: 82%;
-      }
       .title {
         font-weight: bold;
       }
@@ -19,6 +16,7 @@
       &:hover {
         .card-actions {
           display: block;
+          background-color: var(--color-white);
         }
       }
     }

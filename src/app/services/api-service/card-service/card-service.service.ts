@@ -14,7 +14,7 @@ export class CardServiceService {
     private http: HttpClient
   ) {}
 
-  addcard(cardData: Card, listId: number): Observable<List> {
+  updatecard(cardData: Card, listId: number): Observable<List> {
     return this.http
       .get<List>(`${this.sharedService.cardUrl}/lists/${listId}`)
       .pipe(
@@ -28,7 +28,7 @@ export class CardServiceService {
       );
   }
 
-  updateCard(listId: number, cardId: number, cardData: Card): Observable<List> {
+  editCard(listId: number, cardId: number, cardData: Card): Observable<List> {
     return this.http
       .get<List>(`${this.sharedService.cardUrl}/lists/${listId}`)
       .pipe(

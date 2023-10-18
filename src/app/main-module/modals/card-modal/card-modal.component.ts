@@ -139,7 +139,7 @@ export class CardModalComponent {
 
     if (this.data.editData) {
       this.cardService
-        .updateCard(this.data.listId, this.data.cardData.id, updatedCard)
+        .editCard(this.data.listId, this.data.cardData.id, updatedCard)
         .subscribe({
           next: () => {
             this.message.success('Card updated');
@@ -148,13 +148,15 @@ export class CardModalComponent {
           error: () => {},
         });
     } else {
-      this.cardService.addcard(updatedCard, this.data.listData.id).subscribe({
-        next: () => {
-          this.message.success('Card added');
-          this.modalService.closeAll();
-        },
-        error: () => {},
-      });
+      this.cardService
+        .updatecard(updatedCard, this.data.listData.id)
+        .subscribe({
+          next: () => {
+            this.message.success('Card added');
+            this.modalService.closeAll();
+          },
+          error: () => {},
+        });
     }
   }
 
