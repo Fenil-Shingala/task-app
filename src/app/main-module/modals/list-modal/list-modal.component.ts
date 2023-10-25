@@ -45,9 +45,9 @@ export class ListModalComponent {
       ],
     });
     this.getAllLists();
-    this.editListData
+    this.editListData && this.editListData.listTitle
       ? this.listForm.controls['listTitle'].patchValue(
-          this.editListData.listTitle
+          this.editListData.listTitle.toUpperCase().trim()
         )
       : '';
   }

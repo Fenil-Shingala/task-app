@@ -2,33 +2,91 @@
   "lists": [
     {
       "listTitle": "NEW",
-      "cards": [],
-      "id": 1
-    },
-    {
-      "listTitle": "TODO",
       "cards": [
         {
-          "cardTitle": "sdfhtgb",
-          "assignee": [],
+          "cardTitle": "daSF",
+          "assignee": [
+            {
+              "firstName": "d",
+              "lastName": "d",
+              "email": "d@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 2
+            }
+          ],
           "cardLabels": [
             {
-              "labelName": "new",
-              "labelColor": "gold",
+              "labelName": "sdcwsdc",
+              "labelColor": "red",
               "id": 1
             },
             {
-              "labelName": "dcfdv",
-              "labelColor": "magenta",
+              "labelName": "dcvdsc",
+              "labelColor": "gold",
+              "id": 2
+            },
+            {
+              "labelName": "asdfv dxc",
+              "labelColor": "red",
               "id": 4
             },
             {
-              "labelName": "adsvd edfcv",
+              "labelName": "sdfvfefsvd",
               "labelColor": "gold",
               "id": 5
             }
           ],
-          "id": "418C255E",
+          "id": "9D5BDFC6",
+          "creator": {
+            "firstName": "Fenil",
+            "lastName": "Shingala",
+            "email": "fenil@gmail.com",
+            "password": "Fenil@123",
+            "confirmPassword": "Fenil@123",
+            "id": 1
+          }
+        },
+        {
+          "cardTitle": "cdacds",
+          "assignee": [
+            {
+              "firstName": "d",
+              "lastName": "d",
+              "email": "d@gmail.com",
+              "password": "Fenil@123",
+              "confirmPassword": "Fenil@123",
+              "id": 2
+            }
+          ],
+          "cardLabels": [
+            {
+              "labelName": "sdcwsdc",
+              "labelColor": "red",
+              "id": 1
+            },
+            {
+              "labelName": "asdfv dxc",
+              "labelColor": "red",
+              "id": 4
+            },
+            {
+              "labelName": "sdfvfefsvd",
+              "labelColor": "gold",
+              "id": 5
+            },
+            {
+              "labelName": "wvsc z",
+              "labelColor": "purple",
+              "id": 6
+            },
+            {
+              "labelName": "dcvdsc",
+              "labelColor": "gold",
+              "id": 2
+            }
+          ],
+          "id": "D35F2E9F",
           "creator": {
             "firstName": "Fenil",
             "lastName": "Shingala",
@@ -39,44 +97,39 @@
           }
         }
       ],
+      "id": 1
+    },
+    {
+      "listTitle": "DSFDF",
+      "cards": [],
       "id": 2
     }
   ],
   "labels": [
     {
-      "labelName": "new",
-      "labelColor": "gold",
+      "labelName": "sdcwsdc",
+      "labelColor": "red",
       "id": 1
     },
     {
-      "labelName": "asfcr",
-      "labelColor": "purple",
+      "labelName": "dcvdsc",
+      "labelColor": "gold",
       "id": 2
     },
     {
-      "labelName": "dsff",
-      "labelColor": "lime",
-      "id": 3
-    },
-    {
-      "labelName": "dcfdv",
-      "labelColor": "magenta",
+      "labelName": "asdfv dxc",
+      "labelColor": "red",
       "id": 4
     },
     {
-      "labelName": "adsvd edfcv",
+      "labelName": "sdfvfefsvd",
       "labelColor": "gold",
       "id": 5
     },
     {
-      "labelName": "wdefvdedf",
-      "labelColor": "green",
+      "labelName": "wvsc z",
+      "labelColor": "purple",
       "id": 6
-    },
-    {
-      "labelName": "wdefvedf",
-      "labelColor": "red",
-      "id": 7
     }
   ]
 }

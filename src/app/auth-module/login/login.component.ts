@@ -20,16 +20,15 @@ import { noSpace } from 'src/app/validators/noSpace.validators';
 export class LoginComponent {
   @ViewChild('emailElement') emailInput!: ElementRef;
   passwordVisible = false;
-  passwordType!: string;
   allUserData: User[] = [];
   loginForm!: FormGroup;
 
   constructor(
     private loginFormBuilder: FormBuilder,
-    private route: Router,
+    public route: Router,
     private userService: UserServiceService,
-    private sharedService: SharedServiceService,
-    private message: NzMessageService,
+    public sharedService: SharedServiceService,
+    public message: NzMessageService,
     private changeDetectRef: ChangeDetectorRef
   ) {}
 
@@ -44,7 +43,6 @@ export class LoginComponent {
       ],
       password: ['', [Validators.required, noSpace.noSpaceValidator]],
     });
-    this.passwordType = 'password';
     this.getUserData();
   }
 

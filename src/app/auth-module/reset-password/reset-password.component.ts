@@ -57,10 +57,6 @@ export class ResetPasswordComponent {
     this.changeDetectRef.detectChanges();
   }
 
-  togglePasswordType(type: string): string {
-    return type === 'password' ? 'text' : 'password';
-  }
-
   submit(): void {
     if (this.resetPasswordForm.invalid) {
       this.sharedService.showErrorOnSubmit(this.resetPasswordForm);

@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { SharedServiceService } from '../../shared-service/shared-service.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interface/User';
-import { Observable, mergeMap } from 'rxjs';
-import { List } from 'src/app/interface/List';
-import { Card } from 'src/app/interface/Card';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

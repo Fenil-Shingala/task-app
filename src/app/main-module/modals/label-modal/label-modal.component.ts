@@ -67,6 +67,9 @@ export class LabelModalComponent {
   }
 
   submit(): void {
+    if (this.labelForm.invalid) {
+      return;
+    }
     const updatedlabel = {
       ...this.labelForm.value,
       labelName: this.labelForm.value.labelName.trim(),
@@ -78,8 +81,6 @@ export class LabelModalComponent {
         .subscribe({
           next: () => {
             this.message.success('Label updated');
-            this.getAlllabels();
-            this.resetForm();
           },
           error: () => {},
         });
@@ -87,12 +88,12 @@ export class LabelModalComponent {
       this.labelService.addLabels(updatedlabel).subscribe({
         next: () => {
           this.message.success('Lable added');
-          this.getAlllabels();
-          this.resetForm();
         },
         error: () => {},
       });
     }
+    this.getAlllabels();
+    this.resetForm();
   }
 
   resetForm(): void {
@@ -108,8 +109,10 @@ export class LabelModalComponent {
   deletelabel(labelId: number): void {
     this.labelService.deleteLabel(labelId).subscribe({
       next: () => {
+        this.alllabels = this.alllabels.filter(
+          (lables) => labelId !== lables.id
+        );
         this.message.error('Lable deleted');
-        this.getAlllabels();
         this.labelForm.reset();
       },
     });

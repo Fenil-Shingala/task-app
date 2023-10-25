@@ -13,7 +13,7 @@ export class SharedServiceService {
 
   constructor() {}
 
-  getLoginUser(): User {
+  getLoginUser(): User | null {
     return localStorage.getItem('loginUser')
       ? JSON.parse(localStorage.getItem('loginUser') || '')
       : null;
@@ -28,7 +28,7 @@ export class SharedServiceService {
     });
   }
 
-  setItemSessionStorage(ketValue: string, data: User) {
+  setItemSessionStorage(ketValue: string, data: User): void {
     sessionStorage.setItem(ketValue, JSON.stringify(data));
   }
 }

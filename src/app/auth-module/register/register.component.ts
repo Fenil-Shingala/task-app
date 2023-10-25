@@ -24,8 +24,6 @@ export class RegisterComponent {
   passwordPattern = this.sharedService.passwordPattern;
   passwordVisible = false;
   confirmPasswordVisible = false;
-  passwordType!: string;
-  confirmPasswordType!: string;
   allUserData: User[] = [];
   registerForm!: FormGroup;
 
@@ -63,8 +61,6 @@ export class RegisterComponent {
       ],
       confirmPassword: ['', [Validators.required, noSpace.noSpaceValidator]],
     });
-    this.passwordType = 'password';
-    this.confirmPasswordType = 'password';
     this.getUserData();
   }
 

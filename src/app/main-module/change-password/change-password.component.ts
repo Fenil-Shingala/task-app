@@ -60,7 +60,7 @@ export class ChangePasswordComponent {
     this.userService.getUserData().subscribe({
       next: (value) => {
         this.loginUser = value.find(
-          (user) => user.id === this.sharedService.getLoginUser().id
+          (user) => user.id === (this.sharedService.getLoginUser() as User).id
         ) as User;
       },
       error: () => {},

@@ -22,7 +22,7 @@ export class ListsComponent {
   ) {}
 
   ngOnInit() {
-    this.loginUser = this.sharedService.getLoginUser();
+    this.loginUser = this.sharedService.getLoginUser() as User;
     this.getAllLists();
   }
 

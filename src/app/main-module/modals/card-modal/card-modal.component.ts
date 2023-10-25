@@ -51,7 +51,7 @@ export class CardModalComponent {
     });
     this.getAllUsers();
     this.getAllLabels();
-    this.loginUser = this.sharedService.getLoginUser();
+    this.loginUser = this.sharedService.getLoginUser() as User;
     if (this.data.editData) {
       this.cardForm.controls['cardTitle'].patchValue(
         this.data.cardData.cardTitle
